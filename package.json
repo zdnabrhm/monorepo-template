@@ -1,0 +1,26 @@
+{
+  "name": "monorepo-template",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "build": "turbo build",
+    "dev": "turbo dev",
+    "start": "turbo start",
+    "format": "oxfmt --check",
+    "format:fix": "oxfmt .",
+    "lint": "oxlint .",
+    "lint:fix": "oxlint --fix .",
+    "typecheck": "turbo typecheck"
+  },
+  "devDependencies": {
+    "@oxlint/plugins": "1.82.0",
+    "oxfmt": "^0.67.0",
+    "oxlint": "~1.82.0",
+    "turbo": "^2.9.18",
+    "typescript": "~6"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "packageManager": "pnpm@12.4.1"
+}
