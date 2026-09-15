@@ -5,6 +5,7 @@
   },
   "plugins": ["eslint", "typescript", "unicorn", "oxc", "react"],
   "jsPlugins": [
+    "@shadcn/lint",
     {
       "name": "anti-slop",
       "specifier": "./tools/oxlint/anti-slop/index.ts"
