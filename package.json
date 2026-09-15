@@ -7,6 +7,12 @@
     "build": "turbo build",
     "dev": "turbo dev",
     "start": "turbo start",
+    "db:up": "docker compose up --detach --wait postgres",
+    "db:down": "docker compose down",
+    "db:status": "docker compose ps postgres",
+    "db:logs": "docker compose logs --follow postgres",
+    "db:generate": "pnpm --filter @monorepo/api db:generate",
+    "db:migrate": "pnpm --filter @monorepo/api db:migrate",
     "format": "oxfmt --check",
     "format:fix": "oxfmt .",
     "lint": "oxlint .",
@@ -15,10 +21,11 @@
   },
   "devDependencies": {
     "@oxlint/plugins": "1.82.0",
+    "dotenv-cli": "11.0.0",
     "oxfmt": "^0.67.0",
     "oxlint": "~1.82.0",
-    "turbo": "^2.9.18",
-    "typescript": "~6"
+    "turbo": "^2.10.12",
+    "typescript": "~7.0.2"
   },
   "engines": {
     "node": ">=20"

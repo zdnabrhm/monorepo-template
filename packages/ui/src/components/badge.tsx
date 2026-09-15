@@ -8,10 +8,16 @@ const badgeVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground [a]:hover:bg-primary/80",
+        default:
+          "border-primary-border bg-linear-to-b from-primary-start to-primary-end text-primary-foreground [a]:hover:brightness-95",
         secondary: "bg-secondary text-secondary-foreground [a]:hover:bg-secondary/80",
+        info: "border-info-border bg-linear-to-b from-info-start to-info-end text-info-foreground focus-visible:ring-info-border/30 [a]:hover:brightness-95",
+        success:
+          "border-success-border bg-linear-to-b from-success-start to-success-end text-success-foreground focus-visible:ring-success-border/30 [a]:hover:brightness-95",
+        warning:
+          "border-warning-border bg-linear-to-b from-warning-start to-warning-end text-warning-foreground focus-visible:ring-warning-border/30 [a]:hover:brightness-95",
         destructive:
-          "bg-destructive/10 text-destructive focus-visible:ring-destructive/20 dark:bg-destructive/20 dark:focus-visible:ring-destructive/40 [a]:hover:bg-destructive/20",
+          "border-destructive-border bg-linear-to-b from-destructive-start to-destructive-end text-destructive-foreground focus-visible:ring-destructive-border/30 [a]:hover:brightness-95",
         outline: "border-border text-foreground [a]:hover:bg-muted [a]:hover:text-muted-foreground",
         ghost: "hover:bg-muted hover:text-muted-foreground dark:hover:bg-muted/50",
         link: "text-primary underline-offset-4 hover:underline",

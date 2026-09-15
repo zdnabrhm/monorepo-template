@@ -41,6 +41,10 @@ function Toast({ className, ...props }: ToastPrimitive.Root.Props) {
       data-slot="toast"
       className={cn(
         "group/toast pointer-events-auto absolute right-0 bottom-0 z-[calc(1000-var(--toast-index))] w-full origin-bottom rounded-2xl border bg-popover text-popover-foreground shadow-lg will-change-transform outline-none select-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50",
+        "data-[type=info]:border-info-border data-[type=info]:bg-linear-to-b data-[type=info]:from-info-start data-[type=info]:to-info-end data-[type=info]:text-info-foreground",
+        "data-[type=success]:border-success-border data-[type=success]:bg-linear-to-b data-[type=success]:from-success-start data-[type=success]:to-success-end data-[type=success]:text-success-foreground",
+        "data-[type=warning]:border-warning-border data-[type=warning]:bg-linear-to-b data-[type=warning]:from-warning-start data-[type=warning]:to-warning-end data-[type=warning]:text-warning-foreground",
+        "data-[type=error]:border-destructive-border data-[type=error]:bg-linear-to-b data-[type=error]:from-destructive-start data-[type=error]:to-destructive-end data-[type=error]:text-destructive-foreground",
         "[--gap:0.75rem] [--height:var(--toast-frontmost-height,var(--toast-height))] [--offset-y:calc(var(--toast-offset-y)*-1+calc(var(--toast-index)*var(--gap)*-1)+var(--toast-swipe-movement-y))] [--peek:0.75rem] [--scale:calc(max(0,1-(var(--toast-index)*0.1)))] [--shrink:calc(1-var(--scale))]",
         "h-(--height) [transform:translateX(var(--toast-swipe-movement-x))_translateY(calc(var(--toast-swipe-movement-y)-(var(--toast-index)*var(--peek))-(var(--shrink)*var(--height))))_scale(var(--scale))] [transition:transform_500ms_cubic-bezier(0.22,1,0.36,1),opacity_500ms,height_150ms]",
         "after:absolute after:top-full after:left-0 after:h-[calc(var(--gap)+1px)] after:w-full after:content-['']",
@@ -89,7 +93,10 @@ function ToastDescription({ className, ...props }: ToastPrimitive.Description.Pr
   return (
     <ToastPrimitive.Description
       data-slot="toast-description"
-      className={cn("text-sm text-muted-foreground", className)}
+      className={cn(
+        "text-sm text-muted-foreground group-data-[type=error]/toast:text-destructive-foreground/90 group-data-[type=info]/toast:text-info-foreground/90 group-data-[type=success]/toast:text-success-foreground/90 group-data-[type=warning]/toast:text-warning-foreground/90",
+        className,
+      )}
       {...props}
     />
   );
@@ -136,19 +143,19 @@ function ToastIcon({ type }: { type: string | undefined }) {
   let icon: React.ReactNode = null;
 
   if (type === "success") {
-    icon = <CheckCircleIcon aria-hidden="true" />;
+    icon = <CheckCircleIcon className="text-success-foreground" aria-hidden="true" />;
   }
 
   if (type === "info") {
-    icon = <InfoIcon aria-hidden="true" />;
+    icon = <InfoIcon className="text-info-foreground" aria-hidden="true" />;
   }
 
   if (type === "warning") {
-    icon = <WarningIcon aria-hidden="true" />;
+    icon = <WarningIcon className="text-warning-foreground" aria-hidden="true" />;
   }
 
   if (type === "error") {
-    icon = <XCircleIcon className="text-destructive" aria-hidden="true" />;
+    icon = <XCircleIcon className="text-destructive-foreground" aria-hidden="true" />;
   }
 
   if (type === "loading") {
