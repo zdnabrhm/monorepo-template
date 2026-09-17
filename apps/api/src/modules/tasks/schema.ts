@@ -1,22 +1,34 @@
-import { index, pgEnum, pgTable, text, timestamp, uuid } from "drizzle-orm/pg-core";
-import { v7 as uuidv7 } from "uuid";
+import { z } from "zod";
 
-import { user } from "../auth/schema.js";
+import { taskStatus } from "../../db/schema/task.js";
 
-export const taskStatus = pgEnum("task_status", ["todo", "in_progress", "done"]);
+const status = z.enum(taskStatus.enumValues);
 
-export const task = pgTable(
-  "task",
-  {
-    id: uuid("id").primaryKey().$defaultFn(uuidv7),
-    userId: uuid("user_id")
-      .notNull()
-      .references(() => user.id, { onDelete: "cascade" }),
-    title: text("title").notNull(),
-    description: text("description"),
-    status: taskStatus("status").default("todo").notNull(),
-    createdAt: timestamp("created_at").defaultNow().notNull(),
-    updatedAt: timestamp("updated_at").defaultNow().notNull(),
-  },
-  (table) => [index("task_user_id_created_at_idx").on(table.userId, table.createdAt)],
-);
+export const taskIdSchema = z.object({ id: z.uuid() });
+
+export const listTasksQuerySchema = z.object({
+  search: z.string().trim().max(200).optional(),
+  status: status.optional(),
+  sort: z.enum(["createdAt", "title", "status"]).default("createdAt"),
+  order: z.enum(["asc", "desc"]).default("desc"),
+  page: z.coerce.number().int().min(1).default(1),
+  pageSize: z.coerce.number().int().min(1).max(100).default(10),
+});
+
+export const createTaskBodySchema = z.object({
+  title: z.string().trim().min(1).max(200),
+  description: z.string().trim().max(2000).nullable().optional(),
+  status: status.optional(),
+});
+
+export const updateTaskBodySchema = createTaskBodySchema
+  .partial()
+  .refine((input) => Object.keys(input).length > 0, {
+    message: "Provide at least one field.",
+  });
+
+export type ListTasksQuery = z.output<typeof listTasksQuerySchema>;
+
+export type CreateTaskInput = z.output<typeof createTaskBodySchema>;
+
+export type UpdateTaskInput = z.output<typeof updateTaskBodySchema>;
