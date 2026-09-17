@@ -11,6 +11,7 @@
     "start": "dotenv -e ../../.env -- vite preview"
   },
   "dependencies": {
+    "@monorepo/api": "workspace:*",
     "@monorepo/ui": "workspace:*",
     "@phosphor-icons/react": "^2.1.10",
     "@t3-oss/env-core": "0.13.11",
@@ -23,6 +24,7 @@
     "@tanstack/react-router-devtools": "latest",
     "@tanstack/react-table": "^9.2.4",
     "better-auth": "1.7.4",
+    "hono": "^4.13.7",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
     "tailwindcss": "^4.3.3",

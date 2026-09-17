@@ -31,5 +31,9 @@
   "engines": {
     "node": ">=20.19"
   },
-  "packageManager": "pnpm@12.4.1"
+  "packageManager": "pnpm@12.4.1",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ]
 }

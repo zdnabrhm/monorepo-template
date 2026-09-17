@@ -17,7 +17,7 @@ import {
 } from "@monorepo/ui/components/sidebar";
 import { CaretUpDownIcon, SignOutIcon } from "@phosphor-icons/react";
 
-import { authClient } from "@/lib/auth-client";
+import { authClient } from "@/modules/auth/auth-client";
 
 export function NavUser({
   user,

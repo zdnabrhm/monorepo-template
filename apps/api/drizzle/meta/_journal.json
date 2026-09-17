@@ -5,8 +5,15 @@
     {
       "idx": 0,
       "version": "7",
-      "when": 1789434723783,
-      "tag": "0000_--name=add-auth",
+      "when": 1789609698823,
+      "tag": "0000_add_auth",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1789609703886,
+      "tag": "0001_add_tasks",
       "breakpoints": true
     }
   ]

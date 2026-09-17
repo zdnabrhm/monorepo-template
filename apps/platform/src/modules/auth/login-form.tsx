@@ -23,7 +23,7 @@ import {
 import { Input } from "@monorepo/ui/components/input";
 import { cn } from "@monorepo/ui/lib/utils";
 
-import { authClient } from "@/lib/auth-client";
+import { authClient } from "./auth-client";
 
 type AuthMode = "sign-in" | "sign-up";
 

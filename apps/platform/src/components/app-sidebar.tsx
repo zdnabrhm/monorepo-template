@@ -1,6 +1,6 @@
 import type { ComponentProps } from "react";
 import { Link } from "@tanstack/react-router";
-import { HouseIcon, RowsIcon } from "@phosphor-icons/react";
+import { CheckSquareIcon, HouseIcon, RowsIcon } from "@phosphor-icons/react";
 
 import { NavUser } from "@/components/nav-user";
 import {
@@ -43,6 +43,26 @@ export function AppSidebar({ user, ...props }: AppSidebarProps) {
             <SidebarMenuButton render={<Link to="/" />}>
               <HouseIcon />
               <span>Dashboard</span>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+          <SidebarMenuItem>
+            <SidebarMenuButton
+              render={
+                <Link
+                  to="/tasks"
+                  search={{
+                    search: "",
+                    status: "all",
+                    sort: "createdAt",
+                    order: "desc",
+                    page: 1,
+                    pageSize: 10,
+                  }}
+                />
+              }
+            >
+              <CheckSquareIcon />
+              <span>Tasks</span>
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
