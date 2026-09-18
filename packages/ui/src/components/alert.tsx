@@ -8,13 +8,13 @@ const alertVariants = cva(
     variants: {
       variant: {
         default: "bg-card text-card-foreground",
-        info: "border-info-border bg-linear-to-b from-info-start to-info-end text-info-foreground *:data-[slot=alert-description]:text-info-foreground/90 [&_a:hover]:text-info-foreground",
+        info: "border-info-border bg-linear-to-b from-info-start to-info-end text-info-foreground inset-shadow-2xs inset-shadow-white/40 *:data-[slot=alert-description]:text-info-foreground/90 [&_a:hover]:text-info-foreground",
         success:
-          "border-success-border bg-linear-to-b from-success-start to-success-end text-success-foreground *:data-[slot=alert-description]:text-success-foreground/90 [&_a:hover]:text-success-foreground",
+          "border-success-border bg-linear-to-b from-success-start to-success-end text-success-foreground inset-shadow-2xs inset-shadow-white/40 *:data-[slot=alert-description]:text-success-foreground/90 [&_a:hover]:text-success-foreground",
         warning:
-          "border-warning-border bg-linear-to-b from-warning-start to-warning-end text-warning-foreground *:data-[slot=alert-description]:text-warning-foreground/90 [&_a:hover]:text-warning-foreground",
+          "border-warning-border bg-linear-to-b from-warning-start to-warning-end text-warning-foreground inset-shadow-2xs inset-shadow-white/40 *:data-[slot=alert-description]:text-warning-foreground/90 [&_a:hover]:text-warning-foreground",
         destructive:
-          "border-destructive-border bg-linear-to-b from-destructive-start to-destructive-end text-destructive-foreground *:data-[slot=alert-description]:text-destructive-foreground/90 [&_a:hover]:text-destructive-foreground",
+          "border-destructive-border bg-linear-to-b from-destructive-start to-destructive-end text-destructive-foreground inset-shadow-2xs inset-shadow-white/40 *:data-[slot=alert-description]:text-destructive-foreground/90 [&_a:hover]:text-destructive-foreground",
       },
     },
     defaultVariants: {
