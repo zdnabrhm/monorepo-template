@@ -1,3 +1,5 @@
+import { useForm } from "@tanstack/react-form";
+import { useDebouncedCallback } from "@tanstack/react-pacer";
 import { Link, useNavigate, useSearch } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { Button } from "@monorepo/ui/components/button";
@@ -24,7 +26,18 @@ const statusFilters = [
 export function TasksPage() {
   const params = useSearch({ from: "/_authenticated/tasks" });
   const navigate = useNavigate({ from: "/tasks" });
+  const form = useForm({ defaultValues: { search: params.search } });
   const tasks = useQuery(tasksQuery(params));
+
+  const changeSearch = useDebouncedCallback(
+    (search: string) => {
+      void navigate({
+        replace: true,
+        search: (previous) => ({ ...previous, search, page: 1 }),
+      });
+    },
+    { wait: 300 },
+  );
 
   function change(changes: Partial<TaskListParams>) {
     void navigate({ search: (previous) => ({ ...previous, ...changes }) });
@@ -47,14 +60,23 @@ export function TasksPage() {
         <Button render={<Link to="/tasks/new" search={params} />}>New task</Button>
       </div>
       <div className="flex flex-wrap items-center gap-2">
-        <Input
-          className="max-w-xs"
-          type="search"
-          placeholder="Search tasks"
-          aria-label="Search tasks"
-          value={params.search}
-          onChange={(event) => change({ search: event.target.value, page: 1 })}
-        />
+        <form.Field name="search">
+          {(field) => (
+            <Input
+              className="max-w-xs"
+              type="search"
+              placeholder="Search tasks"
+              aria-label="Search tasks"
+              value={field.state.value}
+              onChange={(event) => {
+                const search = event.target.value;
+                // Let reactive defaultValues replace the draft after external URL changes.
+                field.setValue(search, { dontUpdateMeta: true });
+                changeSearch(search);
+              }}
+            />
+          )}
+        </form.Field>
         <Select
           items={statusFilters}
           value={params.status}
