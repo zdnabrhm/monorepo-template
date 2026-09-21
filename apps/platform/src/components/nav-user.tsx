@@ -1,4 +1,4 @@
-import { useRouter } from "@tanstack/react-router";
+import { Link, useRouter } from "@tanstack/react-router";
 import { Avatar, AvatarFallback, AvatarImage } from "@monorepo/ui/components/avatar";
 import {
   DropdownMenu,
@@ -15,7 +15,7 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@monorepo/ui/components/sidebar";
-import { CaretUpDownIcon, SignOutIcon } from "@phosphor-icons/react";
+import { CaretUpDownIcon, GearIcon, SignOutIcon } from "@phosphor-icons/react";
 
 import { authClient } from "@/modules/auth/auth-client";
 
@@ -85,12 +85,17 @@ export function NavUser({
                   </div>
                 </div>
               </DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem render={<Link to="/settings" />}>
+                <GearIcon />
+                Settings
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem onClick={() => void signOut()}>
+                <SignOutIcon />
+                Log out
+              </DropdownMenuItem>
             </DropdownMenuGroup>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem onClick={() => void signOut()}>
-              <SignOutIcon />
-              Log out
-            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       </SidebarMenuItem>

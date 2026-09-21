@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as AuthenticatedIndexRouteImport } from './routes/_authenticated/index'
+import { Route as AuthenticatedSettingsRouteImport } from './routes/_authenticated/settings'
 import { Route as AuthenticatedTasksRouteRouteImport } from './routes/_authenticated/tasks/route'
 import { Route as AuthenticatedTasksIndexRouteImport } from './routes/_authenticated/tasks/index'
 import { Route as AuthenticatedTasksTaskIdRouteRouteImport } from './routes/_authenticated/tasks/$taskId/route'
@@ -31,6 +32,11 @@ const LoginRoute = LoginRouteImport.update({
 const AuthenticatedIndexRoute = AuthenticatedIndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedSettingsRoute = AuthenticatedSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedTasksRouteRoute = AuthenticatedTasksRouteRouteImport.update({
@@ -71,6 +77,7 @@ export interface FileRoutesByFullPath {
   '/': typeof AuthenticatedIndexRoute
   '/login': typeof LoginRoute
   '/tasks': typeof AuthenticatedTasksRouteRouteWithChildren
+  '/settings': typeof AuthenticatedSettingsRoute
   '/tasks/$taskId': typeof AuthenticatedTasksTaskIdRouteRouteWithChildren
   '/tasks/new': typeof AuthenticatedTasksNewRoute
   '/tasks/': typeof AuthenticatedTasksIndexRoute
@@ -79,6 +86,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/login': typeof LoginRoute
+  '/settings': typeof AuthenticatedSettingsRoute
   '/': typeof AuthenticatedIndexRoute
   '/tasks/new': typeof AuthenticatedTasksNewRoute
   '/tasks': typeof AuthenticatedTasksIndexRoute
@@ -90,6 +98,7 @@ export interface FileRoutesById {
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/login': typeof LoginRoute
   '/_authenticated/tasks': typeof AuthenticatedTasksRouteRouteWithChildren
+  '/_authenticated/settings': typeof AuthenticatedSettingsRoute
   '/_authenticated/': typeof AuthenticatedIndexRoute
   '/_authenticated/tasks/$taskId': typeof AuthenticatedTasksTaskIdRouteRouteWithChildren
   '/_authenticated/tasks/new': typeof AuthenticatedTasksNewRoute
@@ -103,6 +112,7 @@ export interface FileRouteTypes {
     | '/'
     | '/login'
     | '/tasks'
+    | '/settings'
     | '/tasks/$taskId'
     | '/tasks/new'
     | '/tasks/'
@@ -111,6 +121,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/login'
+    | '/settings'
     | '/'
     | '/tasks/new'
     | '/tasks'
@@ -121,6 +132,7 @@ export interface FileRouteTypes {
     | '/_authenticated'
     | '/login'
     | '/_authenticated/tasks'
+    | '/_authenticated/settings'
     | '/_authenticated/'
     | '/_authenticated/tasks/$taskId'
     | '/_authenticated/tasks/new'
@@ -155,6 +167,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof AuthenticatedIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/settings': {
+      id: '/_authenticated/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof AuthenticatedSettingsRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/tasks': {
@@ -239,11 +258,13 @@ const AuthenticatedTasksRouteRouteWithChildren =
 
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedTasksRouteRoute: typeof AuthenticatedTasksRouteRouteWithChildren
+  AuthenticatedSettingsRoute: typeof AuthenticatedSettingsRoute
   AuthenticatedIndexRoute: typeof AuthenticatedIndexRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedTasksRouteRoute: AuthenticatedTasksRouteRouteWithChildren,
+  AuthenticatedSettingsRoute: AuthenticatedSettingsRoute,
   AuthenticatedIndexRoute: AuthenticatedIndexRoute,
 }
 

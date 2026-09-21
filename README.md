@@ -25,7 +25,7 @@ This template has a signed-in task CRUD example at `/tasks`.
 │   │       │   └── errors.ts               # ApiError, validationError, handleError
 │   │       └── modules/
 │   │           ├── auth/
-│   │           │   ├── auth.ts             # Better Auth config: Drizzle adapter, UUID v7 IDs
+│   │           │   ├── auth.ts             # Better Auth config: Drizzle adapter, UUID v7 IDs, immediate unverified email changes
 │   │           │   └── require-session.ts  # middleware: sets userId or throws 401
 │   │           └── tasks/
 │   │               ├── routes.ts           # CRUD endpoints, zValidator on each route
@@ -48,6 +48,11 @@ This template has a signed-in task CRUD example at `/tasks`.
 │           │   ├── auth/
 │           │   │   ├── auth-client.ts      # Better Auth React client
 │           │   │   └── login-form.tsx
+│           │   ├── settings/
+│           │   │   └── components/
+│           │   │       ├── settings-page.tsx        # profile, password sections
+│           │   │       ├── profile-form.tsx         # authClient.changeEmail + updateUser, saves only changed fields
+│           │   │       └── change-password-form.tsx # authClient.changePassword, revokes other sessions
 │           │   └── tasks/
 │           │       ├── api.ts              # typed Hono client from AppType, error parsing
 │           │       ├── queries.ts          # TanStack Query keys and queryOptions
@@ -66,6 +71,7 @@ This template has a signed-in task CRUD example at `/tasks`.
 │               └── _authenticated/
 │                   ├── route.tsx           # session guard + sidebar layout
 │                   ├── index.tsx           # dashboard
+│                   ├── settings.tsx        # renders SettingsPage
 │                   └── tasks/
 │                       ├── route.tsx       # validates search params via taskListSearchSchema
 │                       ├── index.tsx       # renders TasksPage
