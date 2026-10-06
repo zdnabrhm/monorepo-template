@@ -20,18 +20,18 @@
     "typecheck": "turbo typecheck"
   },
   "devDependencies": {
-    "@oxlint/plugins": "1.85.0",
-    "@shadcn/lint": "0.1.5",
+    "@oxlint/plugins": "1.87.0",
+    "@shadcn/lint": "0.2.0",
     "dotenv-cli": "11.0.0",
-    "oxfmt": "^0.70.0",
-    "oxlint": "~1.85.0",
-    "turbo": "^2.11.2",
+    "oxfmt": "^0.72.0",
+    "oxlint": "~1.87.0",
+    "turbo": "^2.11.7",
     "typescript": "~7.0.2"
   },
   "engines": {
     "node": ">=20.19"
   },
-  "packageManager": "pnpm@12.4.1",
+  "packageManager": "pnpm@12.9.1",
   "workspaces": [
     "apps/*",
     "packages/*"
