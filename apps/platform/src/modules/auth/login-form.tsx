@@ -194,9 +194,14 @@ export function LoginForm({ className, ...props }: React.ComponentProps<"div">) 
                 </form.Subscribe>
                 <FieldDescription className="text-center">
                   {isSignUp ? "Already have an account?" : "Don't have an account?"}{" "}
-                  <Button type="button" variant="link" className="h-auto p-0" onClick={changeMode}>
+                  {/* Inline text link, so a plain button instead of the padded <Button>. */}
+                  <button
+                    type="button"
+                    className="font-medium text-primary underline-offset-4 hover:underline"
+                    onClick={changeMode}
+                  >
                     {isSignUp ? "Login" : "Sign up"}
-                  </Button>
+                  </button>
                 </FieldDescription>
               </Field>
             </FieldGroup>

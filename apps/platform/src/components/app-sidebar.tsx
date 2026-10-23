@@ -7,6 +7,7 @@ import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
+  SidebarGroup,
   SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
@@ -38,34 +39,36 @@ export function AppSidebar({ user, ...props }: AppSidebarProps) {
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent>
-        <SidebarMenu className="p-2">
-          <SidebarMenuItem>
-            <SidebarMenuButton render={<Link to="/" />}>
-              <HouseIcon />
-              <span>Dashboard</span>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
-          <SidebarMenuItem>
-            <SidebarMenuButton
-              render={
-                <Link
-                  to="/tasks"
-                  search={{
-                    search: "",
-                    status: "all",
-                    sort: "createdAt",
-                    order: "desc",
-                    page: 1,
-                    pageSize: 10,
-                  }}
-                />
-              }
-            >
-              <CheckSquareIcon />
-              <span>Tasks</span>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
-        </SidebarMenu>
+        <SidebarGroup>
+          <SidebarMenu>
+            <SidebarMenuItem>
+              <SidebarMenuButton render={<Link to="/" />}>
+                <HouseIcon />
+                <span>Dashboard</span>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+            <SidebarMenuItem>
+              <SidebarMenuButton
+                render={
+                  <Link
+                    to="/tasks"
+                    search={{
+                      search: "",
+                      status: "all",
+                      sort: "createdAt",
+                      order: "desc",
+                      page: 1,
+                      pageSize: 10,
+                    }}
+                  />
+                }
+              >
+                <CheckSquareIcon />
+                <span>Tasks</span>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+          </SidebarMenu>
+        </SidebarGroup>
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={user} />
