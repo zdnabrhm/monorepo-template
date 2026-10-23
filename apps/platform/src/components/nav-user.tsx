@@ -53,9 +53,7 @@ export function NavUser({
     <SidebarMenu>
       <SidebarMenuItem>
         <DropdownMenu>
-          <DropdownMenuTrigger
-            render={<SidebarMenuButton size="lg" className="aria-expanded:bg-muted" />}
-          >
+          <DropdownMenuTrigger render={<SidebarMenuButton size="lg" />}>
             <Avatar>
               <AvatarImage src={user.image ?? undefined} alt={user.name} />
               <AvatarFallback>{initials}</AvatarFallback>
