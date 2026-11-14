@@ -20,7 +20,7 @@
     "@hono/zod-validator": "^0.9.1",
     "@t3-oss/env-core": "0.13.11",
     "better-auth": "1.7.23",
-    "drizzle-orm": "0.45.4",
+    "drizzle-orm": "1.0.0-rc.5",
     "hono": "^4.13.18",
     "postgres": "^4.1.1",
     "uuid": "^14.0.3",
@@ -28,7 +28,7 @@
   },
   "devDependencies": {
     "@types/node": "^26.6.6",
-    "drizzle-kit": "0.31.11",
+    "drizzle-kit": "1.0.0-rc.5",
     "tsx": "^4.23.15",
     "typescript": "^7.0.2"
   }

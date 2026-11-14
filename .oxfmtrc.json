@@ -5,7 +5,10 @@
     ".turbo/**",
     "coverage/**",
     ".pnpm-store/**",
-    "**/routeTree.gen.ts"
+    "**/routeTree.gen.ts",
+    "apps/api/drizzle/**",
+    ".agents/skills/drizzle/**",
+    ".claude/skills/drizzle/**"
   ],
   "sortTailwindcss": {
     "stylesheet": "packages/ui/src/styles/globals.css",
