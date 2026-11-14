@@ -5,7 +5,7 @@ import { env } from "./env.js";
 import { handleError } from "./lib/errors.js";
 import { auth } from "./modules/auth/auth.js";
 import { requireSession } from "./modules/auth/require-session.js";
-import { taskRoutes } from "./modules/tasks/routes.js";
+import { taskRouter } from "./modules/tasks/router.js";
 
 export const app = new Hono();
 
@@ -15,7 +15,7 @@ app.all("/api/auth/*", (c) => auth.handler(c.req.raw));
 
 app.use("/api/tasks/*", requireSession);
 
-const routes = app.route("/api/tasks", taskRoutes);
+const routes = app.route("/api/tasks", taskRouter);
 
 export type AppType = typeof routes;
 

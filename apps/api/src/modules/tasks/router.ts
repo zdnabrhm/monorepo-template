@@ -11,7 +11,7 @@ import {
 } from "./schema.js";
 import { createTask, deleteTask, getTask, listTasks, updateTask } from "./service.js";
 
-export const taskRoutes = new Hono<{ Variables: AuthVariables }>()
+export const taskRouter = new Hono<{ Variables: AuthVariables }>()
   .get("/", zValidator("query", listTasksQuerySchema, validationError), async (c) => {
     const result = await listTasks(c.get("userId"), c.req.valid("query"));
 
