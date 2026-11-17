@@ -68,18 +68,15 @@ This template has a signed-in task CRUD example at `/tasks`.
 │           └── routes/
 │               ├── __root.tsx              # root layout, TanStack devtools
 │               ├── login.tsx               # redirects to / when signed in
-│               └── _authenticated/
-│                   ├── route.tsx           # session guard + sidebar layout
-│                   ├── index.tsx           # dashboard
-│                   ├── settings.tsx        # renders SettingsPage
-│                   └── tasks/
-│                       ├── route.tsx       # validates search params via taskListSearchSchema
-│                       ├── index.tsx       # renders TasksPage
-│                       ├── new.tsx         # renders NewTaskPage
-│                       └── $taskId/
-│                           ├── route.tsx   # prefetches task for breadcrumb
-│                           ├── index.tsx   # renders TaskDetailPage
-│                           └── edit.tsx    # renders EditTaskPage
+│               ├── _authenticated.tsx                      # session guard + sidebar layout
+│               ├── _authenticated.index.tsx                # dashboard
+│               ├── _authenticated.settings.tsx             # renders SettingsPage
+│               ├── _authenticated.tasks.tsx                # validates search params via taskListSearchSchema
+│               ├── _authenticated.tasks.index.tsx          # renders TasksPage
+│               ├── _authenticated.tasks.new.tsx            # renders NewTaskPage
+│               ├── _authenticated.tasks.$taskId.tsx        # prefetches task for breadcrumb
+│               ├── _authenticated.tasks.$taskId.index.tsx  # renders TaskDetailPage
+│               └── _authenticated.tasks.$taskId.edit.tsx   # renders EditTaskPage
 ├── packages/
 │   └── ui/
 │       └── src/

@@ -9,18 +9,18 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
+import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
 import { Route as LoginRouteImport } from './routes/login'
-import { Route as AuthenticatedIndexRouteImport } from './routes/_authenticated/index'
-import { Route as AuthenticatedSettingsRouteImport } from './routes/_authenticated/settings'
-import { Route as AuthenticatedTasksRouteRouteImport } from './routes/_authenticated/tasks/route'
-import { Route as AuthenticatedTasksIndexRouteImport } from './routes/_authenticated/tasks/index'
-import { Route as AuthenticatedTasksTaskIdRouteRouteImport } from './routes/_authenticated/tasks/$taskId/route'
-import { Route as AuthenticatedTasksNewRouteImport } from './routes/_authenticated/tasks/new'
-import { Route as AuthenticatedTasksTaskIdIndexRouteImport } from './routes/_authenticated/tasks/$taskId/index'
-import { Route as AuthenticatedTasksTaskIdEditRouteImport } from './routes/_authenticated/tasks/$taskId/edit'
+import { Route as AuthenticatedIndexRouteImport } from './routes/_authenticated.index'
+import { Route as AuthenticatedSettingsRouteImport } from './routes/_authenticated.settings'
+import { Route as AuthenticatedTasksRouteImport } from './routes/_authenticated.tasks'
+import { Route as AuthenticatedTasksIndexRouteImport } from './routes/_authenticated.tasks.index'
+import { Route as AuthenticatedTasksTaskIdRouteImport } from './routes/_authenticated.tasks.$taskId'
+import { Route as AuthenticatedTasksNewRouteImport } from './routes/_authenticated.tasks.new'
+import { Route as AuthenticatedTasksTaskIdIndexRouteImport } from './routes/_authenticated.tasks.$taskId.index'
+import { Route as AuthenticatedTasksTaskIdEditRouteImport } from './routes/_authenticated.tasks.$taskId.edit'
 
-const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+const AuthenticatedRoute = AuthenticatedRouteImport.update({
   id: '/_authenticated',
   getParentRoute: () => rootRouteImport,
 } as any)
@@ -32,53 +32,53 @@ const LoginRoute = LoginRouteImport.update({
 const AuthenticatedIndexRoute = AuthenticatedIndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => AuthenticatedRouteRoute,
+  getParentRoute: () => AuthenticatedRoute,
 } as any)
 const AuthenticatedSettingsRoute = AuthenticatedSettingsRouteImport.update({
   id: '/settings',
   path: '/settings',
-  getParentRoute: () => AuthenticatedRouteRoute,
+  getParentRoute: () => AuthenticatedRoute,
 } as any)
-const AuthenticatedTasksRouteRoute = AuthenticatedTasksRouteRouteImport.update({
+const AuthenticatedTasksRoute = AuthenticatedTasksRouteImport.update({
   id: '/tasks',
   path: '/tasks',
-  getParentRoute: () => AuthenticatedRouteRoute,
+  getParentRoute: () => AuthenticatedRoute,
 } as any)
 const AuthenticatedTasksIndexRoute = AuthenticatedTasksIndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => AuthenticatedTasksRouteRoute,
+  getParentRoute: () => AuthenticatedTasksRoute,
 } as any)
-const AuthenticatedTasksTaskIdRouteRoute =
-  AuthenticatedTasksTaskIdRouteRouteImport.update({
+const AuthenticatedTasksTaskIdRoute =
+  AuthenticatedTasksTaskIdRouteImport.update({
     id: '/$taskId',
     path: '/$taskId',
-    getParentRoute: () => AuthenticatedTasksRouteRoute,
+    getParentRoute: () => AuthenticatedTasksRoute,
   } as any)
 const AuthenticatedTasksNewRoute = AuthenticatedTasksNewRouteImport.update({
   id: '/new',
   path: '/new',
-  getParentRoute: () => AuthenticatedTasksRouteRoute,
+  getParentRoute: () => AuthenticatedTasksRoute,
 } as any)
 const AuthenticatedTasksTaskIdIndexRoute =
   AuthenticatedTasksTaskIdIndexRouteImport.update({
     id: '/',
     path: '/',
-    getParentRoute: () => AuthenticatedTasksTaskIdRouteRoute,
+    getParentRoute: () => AuthenticatedTasksTaskIdRoute,
   } as any)
 const AuthenticatedTasksTaskIdEditRoute =
   AuthenticatedTasksTaskIdEditRouteImport.update({
     id: '/edit',
     path: '/edit',
-    getParentRoute: () => AuthenticatedTasksTaskIdRouteRoute,
+    getParentRoute: () => AuthenticatedTasksTaskIdRoute,
   } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof AuthenticatedIndexRoute
   '/login': typeof LoginRoute
-  '/tasks': typeof AuthenticatedTasksRouteRouteWithChildren
   '/settings': typeof AuthenticatedSettingsRoute
-  '/tasks/$taskId': typeof AuthenticatedTasksTaskIdRouteRouteWithChildren
+  '/tasks': typeof AuthenticatedTasksRouteWithChildren
+  '/tasks/$taskId': typeof AuthenticatedTasksTaskIdRouteWithChildren
   '/tasks/new': typeof AuthenticatedTasksNewRoute
   '/tasks/': typeof AuthenticatedTasksIndexRoute
   '/tasks/$taskId/edit': typeof AuthenticatedTasksTaskIdEditRoute
@@ -95,12 +95,12 @@ export interface FileRoutesByTo {
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
+  '/_authenticated': typeof AuthenticatedRouteWithChildren
   '/login': typeof LoginRoute
-  '/_authenticated/tasks': typeof AuthenticatedTasksRouteRouteWithChildren
   '/_authenticated/settings': typeof AuthenticatedSettingsRoute
+  '/_authenticated/tasks': typeof AuthenticatedTasksRouteWithChildren
   '/_authenticated/': typeof AuthenticatedIndexRoute
-  '/_authenticated/tasks/$taskId': typeof AuthenticatedTasksTaskIdRouteRouteWithChildren
+  '/_authenticated/tasks/$taskId': typeof AuthenticatedTasksTaskIdRouteWithChildren
   '/_authenticated/tasks/new': typeof AuthenticatedTasksNewRoute
   '/_authenticated/tasks/': typeof AuthenticatedTasksIndexRoute
   '/_authenticated/tasks/$taskId/edit': typeof AuthenticatedTasksTaskIdEditRoute
@@ -111,8 +111,8 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/login'
-    | '/tasks'
     | '/settings'
+    | '/tasks'
     | '/tasks/$taskId'
     | '/tasks/new'
     | '/tasks/'
@@ -131,8 +131,8 @@ export interface FileRouteTypes {
     | '__root__'
     | '/_authenticated'
     | '/login'
-    | '/_authenticated/tasks'
     | '/_authenticated/settings'
+    | '/_authenticated/tasks'
     | '/_authenticated/'
     | '/_authenticated/tasks/$taskId'
     | '/_authenticated/tasks/new'
@@ -142,7 +142,7 @@ export interface FileRouteTypes {
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
+  AuthenticatedRoute: typeof AuthenticatedRouteWithChildren
   LoginRoute: typeof LoginRoute
 }
 
@@ -152,7 +152,7 @@ declare module '@tanstack/react-router' {
       id: '/_authenticated'
       path: ''
       fullPath: '/'
-      preLoaderRoute: typeof AuthenticatedRouteRouteImport
+      preLoaderRoute: typeof AuthenticatedRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/login': {
@@ -167,112 +167,109 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof AuthenticatedIndexRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
+      parentRoute: typeof AuthenticatedRoute
     }
     '/_authenticated/settings': {
       id: '/_authenticated/settings'
       path: '/settings'
       fullPath: '/settings'
       preLoaderRoute: typeof AuthenticatedSettingsRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
+      parentRoute: typeof AuthenticatedRoute
     }
     '/_authenticated/tasks': {
       id: '/_authenticated/tasks'
       path: '/tasks'
       fullPath: '/tasks'
-      preLoaderRoute: typeof AuthenticatedTasksRouteRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
+      preLoaderRoute: typeof AuthenticatedTasksRouteImport
+      parentRoute: typeof AuthenticatedRoute
     }
     '/_authenticated/tasks/': {
       id: '/_authenticated/tasks/'
       path: '/'
       fullPath: '/tasks/'
       preLoaderRoute: typeof AuthenticatedTasksIndexRouteImport
-      parentRoute: typeof AuthenticatedTasksRouteRoute
+      parentRoute: typeof AuthenticatedTasksRoute
     }
     '/_authenticated/tasks/$taskId': {
       id: '/_authenticated/tasks/$taskId'
       path: '/$taskId'
       fullPath: '/tasks/$taskId'
-      preLoaderRoute: typeof AuthenticatedTasksTaskIdRouteRouteImport
-      parentRoute: typeof AuthenticatedTasksRouteRoute
+      preLoaderRoute: typeof AuthenticatedTasksTaskIdRouteImport
+      parentRoute: typeof AuthenticatedTasksRoute
     }
     '/_authenticated/tasks/new': {
       id: '/_authenticated/tasks/new'
       path: '/new'
       fullPath: '/tasks/new'
       preLoaderRoute: typeof AuthenticatedTasksNewRouteImport
-      parentRoute: typeof AuthenticatedTasksRouteRoute
+      parentRoute: typeof AuthenticatedTasksRoute
     }
     '/_authenticated/tasks/$taskId/': {
       id: '/_authenticated/tasks/$taskId/'
       path: '/'
       fullPath: '/tasks/$taskId/'
       preLoaderRoute: typeof AuthenticatedTasksTaskIdIndexRouteImport
-      parentRoute: typeof AuthenticatedTasksTaskIdRouteRoute
+      parentRoute: typeof AuthenticatedTasksTaskIdRoute
     }
     '/_authenticated/tasks/$taskId/edit': {
       id: '/_authenticated/tasks/$taskId/edit'
       path: '/edit'
       fullPath: '/tasks/$taskId/edit'
       preLoaderRoute: typeof AuthenticatedTasksTaskIdEditRouteImport
-      parentRoute: typeof AuthenticatedTasksTaskIdRouteRoute
+      parentRoute: typeof AuthenticatedTasksTaskIdRoute
     }
   }
 }
 
-interface AuthenticatedTasksTaskIdRouteRouteChildren {
+interface AuthenticatedTasksTaskIdRouteChildren {
   AuthenticatedTasksTaskIdEditRoute: typeof AuthenticatedTasksTaskIdEditRoute
   AuthenticatedTasksTaskIdIndexRoute: typeof AuthenticatedTasksTaskIdIndexRoute
 }
 
-const AuthenticatedTasksTaskIdRouteRouteChildren: AuthenticatedTasksTaskIdRouteRouteChildren =
+const AuthenticatedTasksTaskIdRouteChildren: AuthenticatedTasksTaskIdRouteChildren =
   {
     AuthenticatedTasksTaskIdEditRoute: AuthenticatedTasksTaskIdEditRoute,
     AuthenticatedTasksTaskIdIndexRoute: AuthenticatedTasksTaskIdIndexRoute,
   }
 
-const AuthenticatedTasksTaskIdRouteRouteWithChildren =
-  AuthenticatedTasksTaskIdRouteRoute._addFileChildren(
-    AuthenticatedTasksTaskIdRouteRouteChildren,
+const AuthenticatedTasksTaskIdRouteWithChildren =
+  AuthenticatedTasksTaskIdRoute._addFileChildren(
+    AuthenticatedTasksTaskIdRouteChildren,
   )
 
-interface AuthenticatedTasksRouteRouteChildren {
-  AuthenticatedTasksTaskIdRouteRoute: typeof AuthenticatedTasksTaskIdRouteRouteWithChildren
+interface AuthenticatedTasksRouteChildren {
+  AuthenticatedTasksTaskIdRoute: typeof AuthenticatedTasksTaskIdRouteWithChildren
   AuthenticatedTasksNewRoute: typeof AuthenticatedTasksNewRoute
   AuthenticatedTasksIndexRoute: typeof AuthenticatedTasksIndexRoute
 }
 
-const AuthenticatedTasksRouteRouteChildren: AuthenticatedTasksRouteRouteChildren =
-  {
-    AuthenticatedTasksTaskIdRouteRoute:
-      AuthenticatedTasksTaskIdRouteRouteWithChildren,
-    AuthenticatedTasksNewRoute: AuthenticatedTasksNewRoute,
-    AuthenticatedTasksIndexRoute: AuthenticatedTasksIndexRoute,
-  }
+const AuthenticatedTasksRouteChildren: AuthenticatedTasksRouteChildren = {
+  AuthenticatedTasksTaskIdRoute: AuthenticatedTasksTaskIdRouteWithChildren,
+  AuthenticatedTasksNewRoute: AuthenticatedTasksNewRoute,
+  AuthenticatedTasksIndexRoute: AuthenticatedTasksIndexRoute,
+}
 
-const AuthenticatedTasksRouteRouteWithChildren =
-  AuthenticatedTasksRouteRoute._addFileChildren(
-    AuthenticatedTasksRouteRouteChildren,
-  )
+const AuthenticatedTasksRouteWithChildren =
+  AuthenticatedTasksRoute._addFileChildren(AuthenticatedTasksRouteChildren)
 
-interface AuthenticatedRouteRouteChildren {
-  AuthenticatedTasksRouteRoute: typeof AuthenticatedTasksRouteRouteWithChildren
+interface AuthenticatedRouteChildren {
   AuthenticatedSettingsRoute: typeof AuthenticatedSettingsRoute
+  AuthenticatedTasksRoute: typeof AuthenticatedTasksRouteWithChildren
   AuthenticatedIndexRoute: typeof AuthenticatedIndexRoute
 }
 
-const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
-  AuthenticatedTasksRouteRoute: AuthenticatedTasksRouteRouteWithChildren,
+const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
   AuthenticatedSettingsRoute: AuthenticatedSettingsRoute,
+  AuthenticatedTasksRoute: AuthenticatedTasksRouteWithChildren,
   AuthenticatedIndexRoute: AuthenticatedIndexRoute,
 }
 
-const AuthenticatedRouteRouteWithChildren =
-  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
+const AuthenticatedRouteWithChildren = AuthenticatedRoute._addFileChildren(
+  AuthenticatedRouteChildren,
+)
 
 const rootRouteChildren: RootRouteChildren = {
-  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
+  AuthenticatedRoute: AuthenticatedRouteWithChildren,
   LoginRoute: LoginRoute,
 }
 export const routeTree = rootRouteImport
